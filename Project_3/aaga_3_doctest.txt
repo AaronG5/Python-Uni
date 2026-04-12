@@ -1,0 +1,28 @@
+>>> import sys
+>>> sys.path.insert(0, "Project_3")
+>>> m = __import__("aaga_3")
+>>> is_perfect_number = m.is_perfect_number
+
+>>> is_perfect_number(-6)
+False
+>>> is_perfect_number(1)
+False
+>>> is_perfect_number(6)
+True
+>>> is_perfect_number(10)
+False
+>>> is_perfect_number(28)
+True
+>>> is_perfect_number(100000)
+False
+>>> is_perfect_number(33550336)
+True
+>>> is_perfect_number('str')
+Traceback (most recent call last):
+...
+TypeError: Incorrect value type for argument
+>>> is_perfect_number(True)
+Traceback (most recent call last):
+...
+TypeError: Incorrect value type for argument
+
