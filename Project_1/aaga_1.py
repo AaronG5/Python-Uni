@@ -77,12 +77,18 @@ def task_11():
    plt.polar(theta, r)
    plt.title("task_11")
    plt.show()
+   plt.close()
 
 # 12. 
 def task_12():
    V = 5.4
    D = 1.2
-   return np.random.normal(V, D, 1000)
+   data = np.random.normal(V, D, 1000)
+   
+   plt.hist(data)
+   plt.title("task_12")
+   plt.show()
+   plt.close()
 
 tasks = [task_1, task_2, task_3, task_4, task_5, task_6, task_7, task_8, task_9, task_10, task_11, task_12]
 
