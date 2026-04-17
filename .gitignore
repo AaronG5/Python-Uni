@@ -3,5 +3,6 @@ data/
 mongodb*
 __pycache__
 Pratybu_pvz
-Classwork
+Classwork/
 c_cpp_properties.json
+build/
