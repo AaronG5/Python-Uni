@@ -6,3 +6,10 @@ Pratybu_pvz
 Classwork/
 c_cpp_properties.json
 build/
+*.egg-info/
+dist/
+.venv/
+.vscode/
+top_restaurants.json
+top100_restaurants.json
+*.so
