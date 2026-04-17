@@ -8,6 +8,8 @@ typedef struct
    long denominator;
 } RationalObject;
 
+static PyTypeObject RationalType;
+
 static long gcd(long a, long b)
 {
    a = a < 0 ? -a : a;
@@ -108,10 +110,10 @@ PyMODINIT_FUNC PyInit_mymodule(void)
    if (m == NULL)
       return NULL;
 
-   Py_INCREF(&RationalType);
+   Py_IncRef((PyObject *)&RationalType);
    if (PyModule_AddObject(m, "Rational", (PyObject *)&RationalType) < 0)
    {
-      Py_DecRef(&RationalType);
+      Py_DecRef((PyObject *)&RationalType);
       Py_DecRef(m);
       return NULL;
    }
