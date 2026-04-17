@@ -11,16 +11,16 @@ setup(
    ),
    python_requires=">=3.13",
    packages=["mypackage"],
-   package_dir={"mypackage": "src/mypackage"},
+   package_dir={"mypackage": "Project_4/src/mypackage"},
    ext_modules=[
       Extension(
          "mypackage.perfect",
-         sources=["src/mypackage/perfect.c"],
+         sources=["Project_4/src/mypackage/perfect.c"],
          libraries=["m"],
       ),
       Extension(
          "mypackage.rational",
-         sources=["src/mypackage/rational.c"],
+         sources=["Project_4/src/mypackage/rational.c"],
       ),
    ],
 )
