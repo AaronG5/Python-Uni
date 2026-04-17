@@ -3,8 +3,7 @@
 
 typedef struct
 {
-   PyObject_HEAD;
-   long numerator;
+   PyObject_HEAD long numerator;
    long denominator;
 } RationalObject;
 
@@ -53,7 +52,7 @@ static int Rational_init(RationalObject *self, PyObject *args, PyObject *kwds)
       den = -den;
    }
 
-   long g = gcd(num < 0 ? -num : num, den); // why the compare
+   long g = gcd(num, den);
    self->numerator = num / g;
    self->denominator = den / g;
 
@@ -70,7 +69,10 @@ static PyObject *add(RationalObject *self, PyObject *args)
    RationalObject *other;
 
    if (!PyArg_ParseTuple(args, "O!", &RationalType, &other))
+   {
+      PyErr_SetString(PyExc_TypeError, "Argument must be of rational type.");
       return NULL;
+   }
 
    long num = self->numerator * other->denominator + other->numerator * self->denominator;
    long den = self->denominator * other->denominator;
@@ -84,8 +86,8 @@ static PyMethodDef Rational_methods[] = {
     {NULL, NULL, 0, NULL}};
 
 static PyTypeObject RationalType = {
-    .ob_base = PyVarObject_HEAD_INIT(NULL, 0)
-                   .tp_name = "mymodule.Rational",
+    PyVarObject_HEAD_INIT(NULL, 0)
+        .tp_name = "mypackage.rational",
     .tp_doc = PyDoc_STR("A rational number (numerator / denominator)"),
     .tp_basicsize = sizeof(RationalObject),
     .tp_itemsize = 0,
@@ -96,22 +98,22 @@ static PyTypeObject RationalType = {
     .tp_methods = Rational_methods,
 };
 
-static struct PyModuleDef mymodule = {
-    PyModuleDef_HEAD_INIT, "mymodule", NULL, -1, NULL};
+static struct PyModuleDef rational = {
+    PyModuleDef_HEAD_INIT, "rational", NULL, -1, NULL};
 
-PyMODINIT_FUNC PyInit_mymodule(void)
+PyMODINIT_FUNC PyInit_rational(void)
 {
    PyObject *m;
 
    if (PyType_Ready(&RationalType) < 0)
       return NULL;
 
-   m = PyModule_Create(&mymodule);
+   m = PyModule_Create(&rational);
    if (m == NULL)
       return NULL;
 
    Py_IncRef((PyObject *)&RationalType);
-   if (PyModule_AddObject(m, "Rational", (PyObject *)&RationalType) < 0)
+   if (PyModule_AddObject(m, "rational", (PyObject *)&RationalType) < 0)
    {
       Py_DecRef((PyObject *)&RationalType);
       Py_DecRef(m);

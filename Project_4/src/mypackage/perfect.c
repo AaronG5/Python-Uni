@@ -18,7 +18,7 @@ static PyObject *is_perfect(PyObject *self, PyObject *args)
    long s = 1;
    long limit = (long)sqrt((double)n);
 
-   for (long i = 2; i < limit; ++i)
+   for (long i = 2; i <= limit; ++i)
    {
       if (n % i == 0)
       {
@@ -37,14 +37,14 @@ static PyMethodDef MyMethods[] = {
      "Return True if n is a perfect number (e.g. 6, 28, 496)."},
     {NULL, NULL, 0, NULL}};
 
-static struct PyModuleDef mymodule = {
+static struct PyModuleDef perfect = {
     PyModuleDef_HEAD_INIT,
     "perfect",
     NULL,
     -1,
     MyMethods};
 
-PyMODINIT_FUNC PyInit_mymodule(void)
+PyMODINIT_FUNC PyInit_perfect(void)
 {
-   return PyModule_Create(&mymodule);
+   return PyModule_Create(&perfect);
 }
