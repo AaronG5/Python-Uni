@@ -13,3 +13,4 @@ dist/
 top_restaurants.json
 top100_restaurants.json
 *.so
+*.dSYM/
