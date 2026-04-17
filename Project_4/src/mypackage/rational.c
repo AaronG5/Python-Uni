@@ -61,6 +61,11 @@ static int Rational_init(RationalObject *self, PyObject *args, PyObject *kwds)
 
 static PyObject *Rational_repr(RationalObject *self)
 {
+   return PyUnicode_FromFormat("Rational(%ld, %ld)", self->numerator, self->denominator);
+}
+
+static PyObject *Rational_str(RationalObject *self)
+{
    return PyUnicode_FromFormat("%ld/%ld", self->numerator, self->denominator);
 }
 
@@ -95,6 +100,7 @@ static PyTypeObject RationalType = {
     .tp_new = Rational_new,
     .tp_init = (initproc)Rational_init,
     .tp_repr = (reprfunc)Rational_repr,
+    .tp_str = (reprfunc)Rational_str,
     .tp_methods = Rational_methods,
 };
 
